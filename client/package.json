@@ -1,30 +1,33 @@
 {
-  "name": "client",
-  "private": true,
-  "version": "0.0.1",
-  "type": "module",
+  "name": "herohub",
+  "license": "0BSD",
+  "version": "1.0.0",
+  "main": "src/index.js",
   "scripts": {
-    "lint": "eslint .",
-    "dev": "eslint . && vite",
-    "build": "eslint . && vite build",
-    "preview": "eslint . && vite preview"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router": "^7.0.2",
-    "axios": "^1.7.9"
+    "@dicebear/collection": "^9.2.2",
+    "@dicebear/core": "^9.2.2",
+    "@react-native-picker/picker": "^2.11.0",
+    "@react-navigation/native": "^7.0.14",
+    "@react-navigation/stack": "^7.1.1",
+    "expo": "~52.0.23",
+    "expo-location": "~18.0.4",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.5",
+    "react-native-maps": "^1.20.1",
+    "react-native-paper": "^5.12.5",
+    "react-native-safe-area-context": "^5.0.0",
+    "react-native-screens": "^4.4.0",
+    "react-native-vector-icons": "^10.2.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.17.0",
-    "@eslint/js": "^9.17.0",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.16",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "globals": "^15.14.0",
-    "vite": "^6.0.6"
-  }
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
 }
