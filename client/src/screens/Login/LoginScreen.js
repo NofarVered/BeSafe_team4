@@ -3,7 +3,7 @@ import { useState } from 'react';
 //import { Icon } from 'react-native-vector-icons/Icon';
 import { Switch, View, Text, TextInput, Button, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import CustomButton from '../../components/CustomButton';
-
+import CustomTextInput from '../../components/CustomTextInput';
 
 
 const LoginScreen = ({navigation }) => {
@@ -30,8 +30,7 @@ const LoginScreen = ({navigation }) => {
 
         <Text style={styles.title}>Login</Text>
 
-        <TextInput
-            style={styles.input}
+        <CustomTextInput
             placeholder='Email'
             value={userEmail}
             onChangeText={setUserEmail}
@@ -39,12 +38,11 @@ const LoginScreen = ({navigation }) => {
             autoCapitalize='none'
         />
 
-        <TextInput
-            style={styles.input}
+        <CustomTextInput
             placeholder='Password'
             value={userPassword}
             onChangeText={setUserPassword}
-            secureTextEntry
+            secureTextEntry={true}
         />
 
       <View style={styles.switchContainer}>
@@ -84,16 +82,6 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-    },
-
-
-    input: {
-        width: '80%',
-        height: 40,
-        borderColor: '#ccc',
-        borderWidth: 1,
-        marginBottom: 20,
-        paddingLeft: 10,
     },
 
     title: {
