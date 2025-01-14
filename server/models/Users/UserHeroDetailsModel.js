@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const heroDetailsSchema = new mongoose.Schema({
   user_id: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'User', 
   },

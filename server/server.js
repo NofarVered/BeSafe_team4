@@ -1,21 +1,14 @@
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose'; // Import Mongoose
-import rubberDuckRoutes from './routes/rubberDucks.js'; 
-
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import mongoose from 'mongoose';
+import router from './routes/authRoutes.js';
 
 dotenv.config();
 
 const app = express();
 
 app.use(express.json());
-app.use('/images', express.static(path.join(__dirname, 'images'))); // Serve static images
 
 app.use(
   cors({
@@ -24,23 +17,27 @@ app.use(
 );
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI ,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+)
   .then(() => {
     console.log('Connected to MongoDB Atlas');
-    return true; // Return a value to satisfy ESLint
+    return null;  
   })
   .catch((err) => {
     console.error('Error connecting to MongoDB Atlas:', err);
-    throw err; // Re-throw the error to satisfy ESLint
+    throw err;  
   });
 
 
-// Use the routes file for all `/ducks` routes
-app.use('/ducks', rubberDuckRoutes);
+
+app.use('/api', router);
 
 // Start server
-const PORT = process.env.PORT || 5004; // Default to port 5000 if not specified
+const PORT = process.env.PORT || 5004;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
