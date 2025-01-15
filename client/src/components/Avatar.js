@@ -1,1 +1,0 @@
-//https://getavataaars.com/?accessoriesType=Prescription01&clotheColor=Blue03&clotheType=GraphicShirt&eyebrowType=UpDown&facialHairColor=Blonde&facialHairType=BeardMajestic&mouthType=Disbelief&skinColor=DarkBrown&topType=Eyepatch

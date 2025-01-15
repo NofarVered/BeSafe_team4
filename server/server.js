@@ -5,7 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose'; // Import Mongoose
 import rubberDuckRoutes from './routes/rubberDucks.js'; 
-
+import AvatarCreatorRoutes from './routes/avatarCreator.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,6 +38,7 @@ mongoose.connect(process.env.MONGO_URI)
 // Use the routes file for all `/ducks` routes
 app.use('/ducks', rubberDuckRoutes);
 
+app.use('/', AvatarCreatorRoutes);
 // Start server
 const PORT = process.env.PORT || 5004; // Default to port 5000 if not specified
 app.listen(PORT, () => {
