@@ -6,6 +6,7 @@ import router from './routes/authRoutes.js';
 import rubberDuckRoutes from './routes/rubberDucks.js';
 import AvatarCreatorRoutes from './routes/avatarCreator.js';
 
+
 dotenv.config();
 const app = express();
 app.use(express.json());
