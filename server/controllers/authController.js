@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs';
+import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import User from '../models/Users/UserModel.js';
 import SuperDetails from '../models/Users/UserSuperDetailsModel.js';
@@ -35,7 +36,7 @@ const authUser = async (email, password, role, userModel, detailsModel) => {
       const token = jwt.sign(
           { userId: user.user_id, role: user.role },
           SECRET_KEY,
-          { expiresIn: '1s' }
+          { expiresIn: '1H' }
       );
 
 
@@ -74,30 +75,57 @@ const loginSuperHero = async (req, res) => {
 };
 
 
-/*
+
 const getHeroById = async (req, res) => {
-   
-    try {
-        const user = await User.findOne({ user_id: req.params.id, role: 'hero' });
-        if (!user) {
-          return res.status(404).json({ message: 'Hero not found' });
-        }
-        const heroDetails = await HeroDetails.findOne({ user_id: user.user_id });
-        return res.status(200).json({ user, heroDetails });
+  try {
+    const { id } = req.params;
+    const cleanId = id.trim(); // מנקה תווים מיותרים
+
+    // בדיקת תקינות ה-ID
+    if (!mongoose.Types.ObjectId.isValid(cleanId)) {
+      return res.status(400).json({ message: "Invalid ID format" });
     }
-    catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: 'Server error' });
+
+    const hero = await User.findById(cleanId);
+    if (!hero || hero.role !== 'hero') {
+      return res.status(404).json({ message: "Hero not found" });
     }
+
+    const heroDetails = await HeroDetails.findOne({ user_id: cleanId });
+
+    res.status(200).json({
+      user: hero,
+      details: heroDetails,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching Hero data", error: error.message });
+  }
 };
-*/
 
+const getSuperHeroById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const cleanId = id.trim(); // מנקה תווים מיותרים
 
-/*const getSuperHeroById  = async (req, res) => {
+    if (!mongoose.Types.ObjectId.isValid(cleanId)) {
+      return res.status(400).json({ message: "Invalid ID format" });
+    }
 
+    const superHero = await User.findById(cleanId);
+    if (!superHero || superHero.role !== 'super_hero') {
+      return res.status(404).json({ message: "Super Hero not found" });
+    }
 
-};*/
+    const superHeroDetails = await SuperDetails.findOne({ user_id: cleanId });
 
+    res.status(200).json({
+      user: superHero,
+      details: superHeroDetails,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching Super Hero data", error: error.message });
+  }
+};
 
 
 const addHero = async (req, res) => {
@@ -123,20 +151,22 @@ const addHero = async (req, res) => {
         password_hash: hashedPassword,
         role: 'hero',
       });
-  
+
+      
       const savedUser = await newUser.save();
 
-    
+      console.log(savedUser._id);
       const newHeroDetails = new HeroDetails({
-        user_id: savedUser._id,  
+        user_id: savedUser._id,
         age: age,
         parent_phone: parent_phone,
         address: address,
         school_name: school_name,
       });
-  
+
+      console.log(newHeroDetails);
       await newHeroDetails.save();
-  
+
       return res.status(201).json({ message: 'Hero created successfully', newUser, newHeroDetails });
     } catch (error) {
       console.error(error);
@@ -182,16 +212,47 @@ const addSuperHero  = async (req, res) => {
 
 
 
-/*const deleteHero   = async (req, res) => {
+const deleteHero   = async (req, res) => {
+  try {
+    const { id } = req.params;
 
+    // מחיקת המשתמש מה-User
+    const deletedUser = await User.findByIdAndDelete(id);
+    if (!deletedUser) {
+      return res.status(404).json({ message: "Hero not found" });
+    }
 
+    // מחיקת הפרטים מה- HeroDetails
+    await HeroDetails.deleteOne({ user_id: id });
+
+    res.status(200).json({ message: "Hero deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting hero", error: error.message });
+  }
 };
 
 
 const deleteSuperHero   = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // בדיקה אם המשתמש קיים והאם הוא Super Hero
+    const superHero = await User.findById(id);
+    if (!superHero || superHero.role !== 'super_hero') {
+      return res.status(404).json({ message: "Super Hero not found" });
+    }
+
+    // מחיקת המשתמש מטבלת User
+    await User.findByIdAndDelete(id);
+
+    // מחיקת פרטי ה-Super Hero מטבלת SuperDetails
+    await SuperDetails.deleteOne({ user_id: id });
+
+    res.status(200).json({ message: "Super Hero deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting Super Hero", error: error.message });
+  }
+};
 
 
-};*/
-
-
-export { loginSuperHero, loginHero, addHero, addSuperHero };
+export { loginSuperHero, loginHero, addHero, addSuperHero, deleteHero , deleteSuperHero, getHeroById, getSuperHeroById};
