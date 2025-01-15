@@ -21,27 +21,17 @@ const Stack = createStackNavigator();
 export default function App() {
 
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator initialRouteName="LoginScreen">
-    //     <Stack.Screen name="LoginScreen" component={LoginScreen} />
-    //     <Stack.Screen name="RegisterRegularScreen" component={RegisterRegularScreen} />
-    //     <Stack.Screen name="RegisterSuperScreen" component={RegisterSuperScreen} />
-    //     <Stack.Screen name="HomeRegularScreen" component={HomeRegularScreen} />
-    //     <Stack.Screen name="HomeSuperScreen" component={HomeSuperScreen} />
-    //     <Stack.Screen name="SupportScreen" component={SupportScreen} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-
-<NavigationContainer>
-<Stack.Navigator>
-  <Stack.Screen 
-    name="Avatar" 
-    component={AvatarScreen} 
-    options={{ title: 'Create Your Avatar' }} 
-  />
-</Stack.Navigator>
-</NavigationContainer>
-  );
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="LoginScreen">
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="RegisterRegularScreen" component={RegisterRegularScreen} />
+        <Stack.Screen name="RegisterSuperScreen" component={RegisterSuperScreen} />
+        <Stack.Screen name="HomeRegularScreen" component={HomeRegularScreen} />
+        <Stack.Screen name="HomeSuperScreen" component={HomeSuperScreen} />
+        <Stack.Screen name="SupportScreen" component={SupportScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
 const styles = StyleSheet.create({
