@@ -65,8 +65,8 @@ const loginHero = async (req, res) => {
 const loginSuperHero = async (req, res) => {
     try {
       const { email, password } = req.body;
-      const { token, userId, role, userDetails } = await authUser(email, password, 'super_hero', User, SuperDetails);
-      return res.status(200).json({ token, userId, role, userDetails });
+      const { token, userId, username, avatar_url, role, userDetails } = await authUser(email, password, 'super_hero', User, SuperDetails);
+      return res.status(200).json({ token, userId,username, avatar_url, role, userDetails });
     } catch (error) {
       console.error(error);
       return res.status(400).json({ message: 'Email or password is incorrect' });
@@ -176,7 +176,7 @@ const addHero = async (req, res) => {
 
 const addSuperHero  = async (req, res) => {
     try {
-        const { username, email, password, specialization, license_number, contact_number } = req.body;
+        const { username, email, password, specialization, license_number, contact_number, avatar_url } = req.body;
    
         const userExists = await User.findOne({ email, role: 'super_hero' });  // לבדוק רק עבור תפקיד 'hero'
         if (userExists) {
@@ -190,6 +190,7 @@ const addSuperHero  = async (req, res) => {
           email: email,
           password_hash: hashedPassword,
           role: 'super_hero',
+          avatar_url: avatar_url,
         });
    
         const savedUser = await newUser.save();
