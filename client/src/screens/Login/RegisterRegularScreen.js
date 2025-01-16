@@ -26,7 +26,7 @@ const RegisterRegularScreen = ({ navigation }) => {
       const response = await axiosInstance.post('/api/hero', formData);
       console.log('Registration successful:', response.data);
       Alert.alert('Success', 'Registration successful!', [
-        { text: 'OK', onPress: () => navigation.navigate('HomeRegularScreen') }
+        { text: 'OK', onPress: () => navigation.navigate('LoginScreen') }
       ]);
     } catch (error) {
       console.error('Registration error:', error);
