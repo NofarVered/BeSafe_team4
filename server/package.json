@@ -17,10 +17,15 @@
     "crypto": "^1.0.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+<<<<<<< HEAD
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.4",
     "mongoose-sequence": "^6.0.1",
     "react-native-dotenv": "^3.4.11"
+=======
+    "mongoose": "^8.9.4",
+    "socket.io": "^4.8.1"
+>>>>>>> 24e0509 (BS-22: chat logic)
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
