@@ -4,15 +4,13 @@ import jwt from 'jsonwebtoken';
 import User from '../models/Users/UserModel.js';
 import SuperDetails from '../models/Users/UserSuperDetailsModel.js';
 import HeroDetails from '../models/Users/UserHeroDetailsModel.js';
-
-
-const SECRET_KEY = process.env.SECRET_KEY;
-
+import { SECRET_KEY } from '../config/config.js';
 
 //Auth User
 const authUser = async (email, password, role, userModel, detailsModel) => {
   try {
       //check if the user exists
+  
       const user = await userModel.findOne({ email, role});
      
       if(!user){
