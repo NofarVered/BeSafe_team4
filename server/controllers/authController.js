@@ -27,7 +27,7 @@ const authUser = async (email, password, role, userModel, detailsModel) => {
       }
 
 
-      const userDetails = await detailsModel.findOne({ user_id: user.user_id });
+      const userDetails = await detailsModel.findOne({ user_id: user._id });
 
 
       //create JWT token
@@ -38,7 +38,7 @@ const authUser = async (email, password, role, userModel, detailsModel) => {
       );
 
 
-      return { token, userId: user.user_id, role: user.role, userDetails };
+      return { token, userId: user.user_id, username: user.username ,avatar_url: user.avatar_url, role: user.role, userDetails };
   }
   catch (error) {
     throw new Error(error.message || 'Authentication failed');
@@ -50,8 +50,9 @@ const authUser = async (email, password, role, userModel, detailsModel) => {
 const loginHero = async (req, res) => {
     try {
       const { email, password } = req.body;
-      const { token, userId, role, userDetails } = await authUser(email, password, 'hero', User, HeroDetails);
-      return res.status(200).json({ token, userId, role, userDetails });
+      const { token, userId, username, avatar_url, role, userDetails } = await authUser(email, password, 'hero', User, HeroDetails);
+    
+      return res.status(200).json({ token, userId, username, avatar_url, role, userDetails });
     } catch (error) {
       console.error(error);
       return res.status(400).json({ message: 'Email or password is incorrect' });
@@ -128,7 +129,7 @@ const getSuperHeroById = async (req, res) => {
 
 const addHero = async (req, res) => {
     try {
-      const { username, email, password, age, parent_phone, address, school_name } = req.body;
+      const { username, email, password, age, parent_phone, address, school_name, avatar_url } = req.body;
   
       
       const userExists = await User.findOne({ email, role: 'hero' });  // לבדוק רק עבור תפקיד 'hero'
@@ -148,6 +149,7 @@ const addHero = async (req, res) => {
         email: email,
         password_hash: hashedPassword,
         role: 'hero',
+        avatar_url: avatar_url,
       });
 
       
@@ -252,5 +254,4 @@ const deleteSuperHero   = async (req, res) => {
   }
 };
 
-
-export { loginSuperHero, loginHero, addHero, addSuperHero, deleteHero , deleteSuperHero, getHeroById, getSuperHeroById};
+export { loginSuperHero, loginHero, addHero, addSuperHero, deleteHero , deleteSuperHero, getHeroById, getSuperHeroById };

@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   },
   avatar_url: {
     type: String,
-    default: " "
+    required: true,
   },
   created_at: {
     type: Date,

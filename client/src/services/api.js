@@ -1,7 +1,7 @@
-/*import axios from 'axios';
-const apiUrl = import.meta.env.VITE_SERVER_API_URL;
+import axios from 'axios';
+import Constants from 'expo-constants';
 
-// Create an instance of Axios with default configurations
+const apiUrl = Constants.expoConfig.extra.apiUrl;
 const axiosInstance = axios.create({
   baseURL: apiUrl,
   headers: {
@@ -10,4 +10,3 @@ const axiosInstance = axios.create({
 });
 
 export default axiosInstance;
-*/

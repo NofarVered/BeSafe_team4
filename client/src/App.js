@@ -15,6 +15,9 @@ import HomeSuperScreen from './screens/Home/HomeScreenSuper';
 //Resources screens
 import SupportScreen from './screens/Resources/SupportScreen';
 
+//Avatar screen
+import CreateAvatarScreen from './screens/Avatar/CreateAvatarScreen'
+
 const Stack = createStackNavigator();
 
 
@@ -29,6 +32,7 @@ export default function App() {
         <Stack.Screen name="HomeRegularScreen" component={HomeRegularScreen} />
         <Stack.Screen name="HomeSuperScreen" component={HomeSuperScreen} />
         <Stack.Screen name="SupportScreen" component={SupportScreen} />
+        <Stack.Screen name="CreateAvatarScreen" component={CreateAvatarScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import axios from 'axios';
+import { View, Text, Button, StyleSheet, Alert } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import Constants from 'expo-constants';
+import axiosInstance from '../services/api';
+import axios from 'axios';
 
-const AvatarCreator = () => {
+const AvatarCreator = ({ onAvatarGenerated }) => {
   const [avatarXml, setAvatarXml] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState(null);
 
   const fetchAvatar = async () => {
     try {
-      const apiUrl = Constants.expoConfig.extra.apiUrl;
-      const response = await axios.get(`${apiUrl}generate-avatar`);
-      const avatarUrl = response.data.avatarUrl;
-      const svgResponse = await axios.get(avatarUrl);
-      setAvatarXml(svgResponse.data); 
+      const response = await axiosInstance.get('/generate-avatar');
+      const generatedAvatarUrl = response.data.avatarUrl;
+      setAvatarUrl(generatedAvatarUrl);
+      
+      const svgResponse = await axios.get(generatedAvatarUrl);
+      setAvatarXml(svgResponse.data);
+      
+      // Call the callback with the avatar URL if provided
+      if (onAvatarGenerated) {
+        onAvatarGenerated(generatedAvatarUrl);
+      }
     } catch (error) {
-      console.error('Error fetching avatar:', error);
+      console.error('Error fetching avatar:', error.response ? error.response.data : error.message);
+      Alert.alert('Error', `Failed to generate avatar: ${error.message}`);
     }
   };
 
