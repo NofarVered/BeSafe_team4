@@ -20,6 +20,8 @@ import SupportScreen from './screens/Resources/SupportScreen';
 //Comments screen
 import CommentsScreen from './screens/Home/EmojiComments';
 
+import ChatScreenSuper from './screens/Chat/ChatScreenSuper';
+import ChatScreenHero from './screens/Chat/ChatScreenHero';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -85,6 +87,8 @@ export default function App() {
           component={SupportScreen}
           options={{ title: 'Support' }}
         />
+        <Stack.Screen name="ChatScreenHero" component={ChatScreenHero} />
+        <Stack.Screen name="ChatScreenSuper" component={ChatScreenSuper} />
       </Stack.Navigator>
     </NavigationContainer>
   );

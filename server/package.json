@@ -24,6 +24,7 @@
     "react-native-dotenv": "^3.4.11"
 =======
     "mongoose": "^8.9.4",
+    "react-native-dotenv": "^3.4.11",
     "socket.io": "^4.8.1"
 >>>>>>> 24e0509 (BS-22: chat logic)
   },
