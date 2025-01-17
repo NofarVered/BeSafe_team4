@@ -124,7 +124,10 @@ const HomeRegularScreen = ({navigation, route}) => {
         <TouchableOpacity 
           style={styles.chatButton} 
           onPress={() => alert('Chat button pressed!')}
-        >
+        />
+
+        {/* Chat button */}
+        <TouchableOpacity style={styles.chatButton} onPress={() => navigation.navigate('ChatScreenHero')}>
           <Text style={styles.chatText}>💬</Text>
         </TouchableOpacity>
       </View>

@@ -15,8 +15,14 @@ import HomeSuperScreen from './screens/Home/HomeScreenSuper';
 //Resources screens
 import SupportScreen from './screens/Resources/SupportScreen';
 
+<<<<<<< HEAD
 //Avatar screen
 import CreateAvatarScreen from './screens/Avatar/CreateAvatarScreen'
+=======
+//Chat Screen
+import ChatScreenSuper from './screens/Chat/ChatScreenSuper';
+import ChatScreenHero from './screens/Chat/ChatScreenHero';
+>>>>>>> 9f424a4 (add chat socket)
 
 const Stack = createStackNavigator();
 
@@ -32,7 +38,12 @@ export default function App() {
         <Stack.Screen name="HomeRegularScreen" component={HomeRegularScreen} />
         <Stack.Screen name="HomeSuperScreen" component={HomeSuperScreen} />
         <Stack.Screen name="SupportScreen" component={SupportScreen} />
+<<<<<<< HEAD
         <Stack.Screen name="CreateAvatarScreen" component={CreateAvatarScreen} />
+=======
+        <Stack.Screen name="ChatScreenHero" component={ChatScreenHero} />
+        <Stack.Screen name="ChatScreenSuper" component={ChatScreenSuper} />
+>>>>>>> 9f424a4 (add chat socket)
       </Stack.Navigator>
     </NavigationContainer>
   )
