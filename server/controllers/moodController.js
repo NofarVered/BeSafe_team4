@@ -9,7 +9,10 @@ export const getUserMode = async (req, res) => {
     }
   
     try {
-      const userMode = await UserMode.findOne({ user_id: userId, });
+      const userMode = await UserMode.findOne({ user_id: userId })
+        .sort({ created_at: -1 }) 
+        .limit(1); 
+        
       if (!userMode) {
         return res.status(404).json({ error: 'User mode not found' });
       }

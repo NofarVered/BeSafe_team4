@@ -6,9 +6,10 @@ import CustomButton from '../../components/CustomButton';
 import BackGround from '../../components/backGround';
 import Map from '../../components/Map';
 import { authService } from '../../services/authService';
+import { useNavigation } from '@react-navigation/native'; 
 import axios from 'axios';
 
-const HomeRegularScreen = ({navigation, route}) => {
+const HomeRegularScreen = ({navigation}) => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [avatarXml, setAvatarXml] = useState(null);
@@ -112,7 +113,10 @@ const HomeRegularScreen = ({navigation, route}) => {
           {userData?.username || 'User Name'}
         </Text>
         
-        <Text style={styles.mood}>Feeling Happy 😊</Text>
+        <CustomButton 
+          title='change mood'
+          onPress={() => navigation.navigate('ChangeMoodScreen')}
+        />
         
         <Map/>
         

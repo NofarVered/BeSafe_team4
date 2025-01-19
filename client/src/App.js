@@ -11,6 +11,7 @@ import RegisterSuperScreen from './screens/Login/RegisterSuperScreen';
 //Home Screens
 import HomeRegularScreen from './screens/Home/HomeScreenRegular';
 import HomeSuperScreen from './screens/Home/HomeScreenSuper';
+import ChangeMoodScreen from './screens/Home/ChangeMoodScreen';
 
 //Resources screens
 import SupportScreen from './screens/Resources/SupportScreen';
@@ -31,6 +32,7 @@ export default function App() {
         <Stack.Screen name="RegisterSuperScreen" component={RegisterSuperScreen} />
         <Stack.Screen name="HomeRegularScreen" component={HomeRegularScreen} />
         <Stack.Screen name="HomeSuperScreen" component={HomeSuperScreen} />
+        <Stack.Screen name="ChangeMoodScreen" component={ChangeMoodScreen} />
         <Stack.Screen name="SupportScreen" component={SupportScreen} />
         <Stack.Screen name="CreateAvatarScreen" component={CreateAvatarScreen} />
       </Stack.Navigator>
