@@ -1,7 +1,7 @@
 // screens/HeroChatScreen.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { socket } from '../services/socket';
+import { socket } from '../../services/SocketService';
 
 const HeroChatScreen = ({ navigation, route }) => {
   const [superheroName, setSuperheroName] = useState('');

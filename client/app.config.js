@@ -9,6 +9,8 @@ export default {
     platforms: ["ios", "android", "web"],
     extra: {
       apiUrl: process.env.VITE_SERVER_API_URL
-    }
+    },
+    "newArchEnabled": true,
+
   }
 };

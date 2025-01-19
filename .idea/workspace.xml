@@ -5,18 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="50827386-6c2e-4361-8522-efcae97b4b9e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/screens/Chat/HeroChatScreen.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/screens/Chat/SuperheroChatsListScreen.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/services/socket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.expo/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/.expo/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/Chat/ChatChooseForSuperUsers.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/screens/Chat/ChatScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/Chat/ChatScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/screens/Chat/HeroChatScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/Chat/HeroChatScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/screens/Chat/SuperheroChatsListScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/Chat/SuperheroChatsListScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/screens/Home/HomeScreenRegular.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/Home/HomeScreenRegular.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/screens/Home/HomeScreenSuper.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/Home/HomeScreenSuper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/Login/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/Login/LoginScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/socket.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/socket/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/socket/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,18 +42,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Rebasing BS-22",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/bar/Desktop/projects/hackton/BeSafe_team4"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Rebasing BS-22&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bar/Desktop/projects/hackton/BeSafe_team4&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
