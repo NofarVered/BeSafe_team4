@@ -15,6 +15,14 @@ const userModeSchema = new mongoose.Schema({
   mood_emoji: {
     type: String,
   },
+  latitude: {
+    type: mongoose.Schema.Types.Decimal128,
+    required: true,
+  },
+  longitude: {
+    type: mongoose.Schema.Types.Decimal128,
+    required: true,
+  },  
   created_at: {
     type: Date,
     default: Date.now,
