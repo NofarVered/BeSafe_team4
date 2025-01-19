@@ -1,12 +1,6 @@
 import mongoose from 'mongoose';
 
 const userLocationSchema = new mongoose.Schema({
-    location_id: {
-      type: Number,
-      unique: true,
-      required: true,
-      index: true, // Primary key equivalent
-    },
     user_id: {
       type: Number,
       required: true, // Foreign key to `Users`

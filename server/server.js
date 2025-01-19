@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import router from './routes/authRoutes.js';
+import moodRoutes from './routes/userModeRoutes.js';
 import AvatarCreatorRoutes from './routes/avatarCreator.js';
 import { MONGO_URI, PORT, CLIENT_URL } from './config/config.js';
 
@@ -27,6 +28,7 @@ mongoose.connect(MONGO_URI, {
   });
 
 app.use('/api', router);
+app.use('/moodApi', moodRoutes);
 app.use('/', AvatarCreatorRoutes);
 
 app.listen(PORT, () => {
