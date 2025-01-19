@@ -119,7 +119,7 @@ const HomeSuperScreen = ({navigation, route}) => {
         
         <TouchableOpacity 
           style={styles.chatButton} 
-          onPress={() => alert('Chat button pressed!')}
+          onPress={() =>navigation.navigate('SuperheroChatsListScreen')}
         >
           <Text style={styles.chatText}>💬</Text>
         </TouchableOpacity>

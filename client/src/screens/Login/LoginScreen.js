@@ -4,8 +4,11 @@ import CustomButton from '../../components/CustomButton';
 import axiosInstance from '../../services/api.js';
 import { authService } from '../../services/authService';
 
-const LoginScreen = ({navigation}) => {
-    const [isSuperUser, setIsSuperUser] = useState(false);
+//import {socket } from '../../services/socket';
+
+const LoginScreen = ({navigation }) => {
+
+    const [isSuperUser, setIsSuperUser] = useState(false); // default 'HeroUser'
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -46,8 +49,9 @@ const LoginScreen = ({navigation}) => {
         } finally {
             setIsLoading(false);
         }
-    };
 
+    }
+  
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Login</Text>
