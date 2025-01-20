@@ -20,9 +20,6 @@ import SupportScreen from './screens/Resources/SupportScreen';
 //Comments screen
 import CommentsScreen from './screens/Home/EmojiComments';
 
-import ChatScreenSuper from './screens/Chat/ChatScreenSuper';
-import ChatScreenHero from './screens/Chat/ChatScreenHero';
-
 //Chat Screen
 import HeroChatScreen from './screens/Chat/HeroChatScreen';
 import SuperheroChatsListScreen from './screens/Chat/SuperheroChatsListScreen';

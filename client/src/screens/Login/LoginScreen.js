@@ -30,7 +30,7 @@ const LoginScreen = ({navigation }) => {
                 email: userEmail,
                 password: userPassword
             });
-
+            console.log("server response : " , response);
             const { token, userId, username, avatar_url, role, userDetails } = response.data;
             
             // Save auth data
