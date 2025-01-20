@@ -8,7 +8,7 @@ class SocketService {
   }
 
   // Initialize socket connection
-  initialize(serverUrl = 'http://192.168.56.1:5000') {
+  initialize(serverUrl = 'http://192.168.20.119:5000') {
     console.log(`Initializing socket connection to ${serverUrl}`);
     this.socket = io(serverUrl, {
       transports: ['websocket'],
@@ -58,8 +58,8 @@ class SocketService {
 
   // Login user
   login(userData) {
-    //this.socket.emit('login', userData);
-    this.socket.emit('login', { username: "einat", password: "einat" });
+    console.log("login get userData : " , userData);
+    this.socket.emit('login', userData);
     console.log("login event from user " , userData.username);
   }
 

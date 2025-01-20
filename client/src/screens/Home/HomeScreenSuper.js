@@ -7,6 +7,7 @@ import BackGround from '../../components/backGround';
 import Map from '../../components/Map';
 import { authService } from '../../services/authService';
 import axios from 'axios';
+import socketService from '../../services/SocketService';
 
 const HomeSuperScreen = ({navigation, route}) => {
   const [userData, setUserData] = useState(null);
@@ -55,7 +56,21 @@ const HomeSuperScreen = ({navigation, route}) => {
       try {
         const data = await authService.getUserData();
         setUserData(data);
-        
+        socketService.initialize();
+        const userData = {
+          username: data.username,
+          userType: 'superhero', 
+        };
+                
+        socketService.socket.on('connect', () => {
+          console.log('Socket connected successfully');
+          console.log('Socket object:', socketService.socket);  // לוג אובייקט הסוקט
+          if (socketService.socket && socketService.socket.connected) {
+            socketService.login(userData);
+          } else {
+            console.error('Socket not connected');
+          }
+        });
         if (data?.avatar_url) {
           await fetchAvatarXml(data.avatar_url);
         }
@@ -119,7 +134,7 @@ const HomeSuperScreen = ({navigation, route}) => {
         
         <TouchableOpacity 
           style={styles.chatButton} 
-          onPress={() =>navigation.navigate('SuperheroChatsListScreen')}
+          onPress={() =>navigation.navigate('SuperheroChatsListScreen' , {username: userData.username, userType: 'superhero' })}
         >
           <Text style={styles.chatText}>💬</Text>
         </TouchableOpacity>

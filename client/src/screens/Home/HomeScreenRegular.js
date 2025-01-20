@@ -66,7 +66,17 @@ const HomeRegularScreen = ({navigation}) => {
           userType: 'hero', 
         };
         
-        socketService.login(userData);
+        socketService.socket.on('connect', () => {
+          console.log('Socket connected successfully');
+          console.log('Socket object:', socketService.socket);  // לוג אובייקט הסוקט
+          if (socketService.socket && socketService.socket.connected) {
+            socketService.login(userData);
+          } else {
+            console.error('Socket not connected');
+          }
+        });
+
+        
         
         
         if (data?.avatar_url) {
@@ -143,7 +153,7 @@ const HomeRegularScreen = ({navigation}) => {
         />
 
         {/* Chat button */}
-        <TouchableOpacity style={styles.chatButton} onPress={() => navigation.navigate('HeroChatScreen')}>
+        <TouchableOpacity style={styles.chatButton} onPress={() => navigation.navigate('HeroChatScreen', userData.username)}>
           <Text style={styles.chatText}>💬</Text>
         </TouchableOpacity>
       </View>
