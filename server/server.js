@@ -26,12 +26,14 @@ const io = new Server(server, {
   cors: {
     origin: "*", // לבטל את ההגבלה לצורך בדיקות
     methods: ["GET", "POST"]
-  }
+  },
+  transports: ['websocket'],  // נבחר להשתמש ב-WebSocket בלבד
+  pingTimeout: 10000,  // זמן מקסימלי להמתנה לפינג
+  pingInterval: 2500, 
 });
 
 
 
-app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, 'images'))); // Serve static images
 app.use(
   cors({
@@ -43,7 +45,7 @@ app.use(
 
 // Initialize socket handlers
 initializeSocket(io);
-
+//console.log(io);
 
 
 
@@ -64,11 +66,8 @@ app.use('/api', router);
 app.use('/moodApi', moodRoutes);
 app.use('/', AvatarCreatorRoutes);
 
-// Start server
-const PORT = process.env.PORT || 5004; // Default to port 5000 if not specified
 
-
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 

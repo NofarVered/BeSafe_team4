@@ -8,6 +8,8 @@ import Map from '../../components/Map';
 import { authService } from '../../services/authService';
 import { useNavigation } from '@react-navigation/native'; 
 import axios from 'axios';
+import socketService from '../../services/SocketService';
+
 
 const HomeRegularScreen = ({navigation}) => {
   const [userData, setUserData] = useState(null);
@@ -22,6 +24,7 @@ const HomeRegularScreen = ({navigation}) => {
       console.error('Error fetching avatar SVG:', error);
     }
   };
+
 
   const handleLogout = async () => {
     Alert.alert(
@@ -56,6 +59,15 @@ const HomeRegularScreen = ({navigation}) => {
       try {
         const data = await authService.getUserData();
         setUserData(data);
+        console.log("HomeScreen- userdata: " , data);
+        socketService.initialize();
+        const userData = {
+          username: data.username,
+          userType: 'hero', 
+        };
+        
+        socketService.login(userData);
+        
         
         if (data?.avatar_url) {
           await fetchAvatarXml(data.avatar_url);
@@ -131,7 +143,7 @@ const HomeRegularScreen = ({navigation}) => {
         />
 
         {/* Chat button */}
-        <TouchableOpacity style={styles.chatButton} onPress={() => navigation.navigate('ChatScreenHero')}>
+        <TouchableOpacity style={styles.chatButton} onPress={() => navigation.navigate('HeroChatScreen')}>
           <Text style={styles.chatText}>💬</Text>
         </TouchableOpacity>
       </View>

@@ -13,7 +13,13 @@ const store = {
 export function initializeSocket(io) {
   io.on('connection', (socket) => {
     console.log('User connected:', socket.id);
-
+    // Set a timeout for the connection
+    setTimeout(() => {
+      if (socket.connected) {
+        console.log('Socket connection timed out');
+        socket.disconnect();
+      }
+    }, 200000);     
     socket.on('login', (data) => {
         console.log('Login data received:', data); // הדפסת המידע שמתקבל
         handleLogin(io, socket, data, store);

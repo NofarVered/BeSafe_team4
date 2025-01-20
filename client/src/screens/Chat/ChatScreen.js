@@ -9,7 +9,7 @@ import {
   Platform,
   StyleSheet 
 } from 'react-native';
-import { socket } from '../../services/socket';
+import { socket } from '../../services/SocketService';
 
 const ChatScreen = ({ route }) => {
   const [messages, setMessages] = useState([]);

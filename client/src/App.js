@@ -22,6 +22,11 @@ import CommentsScreen from './screens/Home/EmojiComments';
 
 import ChatScreenSuper from './screens/Chat/ChatScreenSuper';
 import ChatScreenHero from './screens/Chat/ChatScreenHero';
+
+//Chat Screen
+import HeroChatScreen from './screens/Chat/HeroChatScreen';
+import SuperheroChatsListScreen from './screens/Chat/SuperheroChatsListScreen';
+import ChatScreen from './screens/Chat/ChatScreen';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -87,8 +92,9 @@ export default function App() {
           component={SupportScreen}
           options={{ title: 'Support' }}
         />
-        <Stack.Screen name="ChatScreenHero" component={ChatScreenHero} />
-        <Stack.Screen name="ChatScreenSuper" component={ChatScreenSuper} />
+        <Stack.Screen name="HeroChatScreen" component={HeroChatScreen} />
+        <Stack.Screen name="SuperheroChatsListScreen" component={SuperheroChatsListScreen} />
+        <Stack.Screen name="ChatScreen" component={ChatScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
