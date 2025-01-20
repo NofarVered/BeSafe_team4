@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import axiosInstance from '../services/api'; // הייבוא של axiosInstance
-import { authService } from '../services/authService'; // הייבוא של authService
+import axiosInstance from '../services/api';
+import { authService } from '../services/authService';
+import { useNavigation } from '@react-navigation/native'; // Add this import
 
 const Map = () => {
-  const [moodData, setMoodData] = useState([]); // שונה למערך
-  const [userId, setUserId] = useState(null); // סטייט עבור user_id
+  const navigation = useNavigation(); // Add this hook
+  const [moodData, setMoodData] = useState([]);
+  const [userId, setUserId] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
 
-  // פונקציה לקבלת המצב רוח של המשתמש
   const fetchMoodData = async () => {
     try {
-      // קבלת ה-user_id מהשירות
       const userData = await authService.getUserData();
       setUserId(userData.user_id);
-
-      // קריאה ל-API לקבלת כל המצבים
       const response = await axiosInstance.get('/moodApi/currentWeekMoods');
-      setMoodData(response.data); // שמור את המידע של כל המצבים
+      setMoodData(response.data);
     } catch (error) {
       console.error('Error fetching mood data:', error);
       setErrorMsg('Failed to fetch mood data');
@@ -26,8 +24,14 @@ const Map = () => {
   };
 
   useEffect(() => {
-    fetchMoodData(); // קריאה לפונקציה שמביאה את המידע
+    fetchMoodData();
+    const interval = setInterval(fetchMoodData, 30000);
+    return () => clearInterval(interval);
   }, []);
+
+  const handleMarkerPress = (mood) => {
+    navigation.navigate('Comments', { mood });
+  };
 
   if (errorMsg) {
     return (
@@ -49,7 +53,7 @@ const Map = () => {
     <MapView
       style={styles.map}
       initialRegion={{
-        latitude: parseFloat(moodData[0].latitude.$numberDecimal), // המיקום הראשון
+        latitude: parseFloat(moodData[0].latitude.$numberDecimal),
         longitude: parseFloat(moodData[0].longitude.$numberDecimal),
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
@@ -57,18 +61,17 @@ const Map = () => {
     >
       {moodData.map((mood) => (
         <Marker
-          key={mood.mood_id} // מפתח ייחודי לכל מרקר
+          key={mood.mood_id}
           coordinate={{
             latitude: parseFloat(mood.latitude.$numberDecimal),
             longitude: parseFloat(mood.longitude.$numberDecimal),
           }}
-          title={`Mood: ${mood.mood_emoji}`}
+          onPress={() => handleMarkerPress(mood)}
         >
-          {/* הצגת האימוג'י במרקר עם רקע ירוק למשתמש הנוכחי */}
           <View
             style={[
               styles.moodMarker,
-              mood.user_id === userId && styles.userMoodMarker, // רקע ירוק אם ה-user_id תואם
+              mood.user_id === userId && styles.userMoodMarker,
             ]}
           >
             <Text style={styles.moodEmoji}>{mood.mood_emoji}</Text>
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   userMoodMarker: {
-    backgroundColor: 'lightgreen', // רקע ירוק למשתמש הנוכחי
+    backgroundColor: 'lightgreen',
   },
   moodEmoji: {
     fontSize: 24,
