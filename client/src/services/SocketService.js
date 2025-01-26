@@ -8,7 +8,7 @@ class SocketService {
   }
 
   // Initialize socket connection
-  initialize(serverUrl = 'http://192.168.20.119:5000') {
+  initialize(serverUrl = 'http://10.100.102.11:5000') {
     console.log(`Initializing socket connection to ${serverUrl}`);
     this.socket = io(serverUrl, {
       transports: ['websocket'],

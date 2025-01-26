@@ -1,20 +1,30 @@
-// screens/HeroChatScreen.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { socket } from '../../services/SocketService';
+import socketService from '../../services/SocketService'; // Importing the socket service
 
 const HeroChatScreen = ({ navigation, route }) => {
   const [superheroName, setSuperheroName] = useState('');
   const { username } = route.params;
 
+  useEffect(() => {
+    // Ensure socket connection is initialized before using it
+    socketService.initialize();
+
+    // Clean up listeners when the component is unmounted
+    return () => {
+      socketService.removeAllListeners('chat_created');
+    };
+  }, []);
+
   const startChat = () => {
     if (superheroName.trim()) {
-      socket.emit('request_chat', {
-        heroName: username,
-        superheroName: superheroName.trim()
-      });
+      console.log("client emit request_chat");
 
-      socket.once('chat_created', (chat) => {
+      // Use socketService to emit the 'request_chat' event
+      socketService.requestChat({ heroName: username, superheroName: superheroName.trim() });
+
+      // Listen for 'chat_created' event using socketService
+      socketService.addListener('chat_created', (chat) => {
         navigation.navigate('Chat', {
           chatId: chat.id,
           username,
@@ -24,7 +34,7 @@ const HeroChatScreen = ({ navigation, route }) => {
 
       // Handle potential errors or timeouts
       setTimeout(() => {
-        socket.off('chat_created');
+        socketService.removeListener('chat_created');
         Alert.alert('Error', 'Could not connect to superhero. Please try again.');
       }, 5000);
     }

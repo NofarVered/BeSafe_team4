@@ -66,8 +66,30 @@ app.use('/api', router);
 app.use('/moodApi', moodRoutes);
 app.use('/', AvatarCreatorRoutes);
 
-
+/*
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+*/
+
+import os from 'os';
+server.listen(PORT, () => {
+  const networkInterfaces = os.networkInterfaces();
+  const addresses = [];
+
+  for (const interfaceName in networkInterfaces) {
+    const interfaceInfo = networkInterfaces[interfaceName];
+    for (const alias of interfaceInfo) {
+      if (alias.family === 'IPv4' && !alias.internal) {
+        addresses.push(alias.address);
+      }
+    }
+  }
+
+  console.log(`Server is running on:`);
+  console.log(`- Port: ${PORT}`);
+  addresses.forEach((address) => {
+    console.log(`- http://${address}:${PORT}`);
+  });
+});
