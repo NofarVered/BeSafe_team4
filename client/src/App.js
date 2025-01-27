@@ -20,6 +20,9 @@ import SupportScreen from './screens/Resources/SupportScreen';
 //Comments screen
 import CommentsScreen from './screens/Home/EmojiComments';
 
+//Mindfullness screen
+import MindfulnessScreen from './screens/Mindfulnes/MindfulnesScreen';
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -41,6 +44,11 @@ export default function App() {
           name="LoginScreen" 
           component={LoginScreen}
           options={{ title: 'Login' }}
+        />
+        <Stack.Screen 
+        name="MindfulnessScreen" 
+        component={MindfulnessScreen}
+        options={{ title: 'Mindfulness Exercise' }}
         />
         <Stack.Screen 
           name="RegisterRegularScreen" 

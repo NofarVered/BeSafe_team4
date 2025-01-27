@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 const BackGround = ({ children }) => {
   return (
     <ImageBackground 
-          source={require('../assets/background.jpg')} 
+          source={require('../assets/background2.jpg')} 
           style={styles.background} 
           resizeMode="cover" 
           >

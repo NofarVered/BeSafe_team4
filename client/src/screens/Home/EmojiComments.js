@@ -51,23 +51,28 @@ const CommentsScreen = ({ route, navigation }) => {
 
   const handleSubmitResponse = async () => {
     if (!newComment.trim()) return;
-
+  
     try {
       const response = await axiosInstance.post('/moodApi/moodResponse', {
         mood_id: mood.mood_id,
         responder_id: userId,
-        text: newComment.trim()
+        text: newComment.trim(),
       });
-
+  
       if (response && response.data) {
         setResponses(prevResponses => [...prevResponses, response.data]);
         setNewComment('');
       }
     } catch (error) {
-      console.error('Error submitting response:', error);
-      alert('Failed to submit comment. Please try again.');
+      if (error.response && error.response.status === 400 && error.response.data.error) {
+        // מציג פופ-אפ עם תוכן השגיאה
+        alert(`${error.response.data.error}`);
+      } else {
+        console.error('Error submitting response:', error);
+        alert('Failed to submit comment. Please try again.');
+      }
     }
-  };
+  };  
 
   const renderResponseItem = ({ item }) => (
     <View style={styles.responseItem}>
